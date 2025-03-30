@@ -19,6 +19,6 @@ message = "You will turn 100 years old on the year " + str(calc_centennial(age))
 
 print(message)
 
-repeat = input("How may times would you like to hear this message again? \n")
+repeat = input("How many times would you like to hear this message again? \n")
 
 print((message + "\n") * int(repeat))

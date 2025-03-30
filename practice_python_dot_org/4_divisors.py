@@ -3,6 +3,8 @@
 number = int(input("Give me a number: \n"))
 number_list = range(1, number + 1)
 
+print("The possible divisors for this number are:")
+
 for element in number_list:
     if number % element == 0:
         print(element)

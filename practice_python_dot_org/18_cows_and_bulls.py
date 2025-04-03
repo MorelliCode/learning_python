@@ -18,6 +18,7 @@ import random
 
 number = random.choices(range(0, 10), k=4)
 tries = 0
+loop = True
 
 def get_input():
     player_guess = int(input("Guess a four-digit number: "))
@@ -32,22 +33,22 @@ def cows_bulls(player_list):
     for item in range(len(player_list)):
         if player_list[item] == number[item]:
             cows += 1
-        if player_list[item] in number:
+        elif player_list[item] in number:
             bulls += 1
-    bulls = bulls - cows
     if cows == 4:
         win()
-        return
-    
-    print(cows)
-    print(bulls)
+    print(str(cows) + " Cows")
+    print(str(bulls) + " Bulls")
 
 def win():
     if tries == 1:
-        print("You win! It only took you " + str(tries) + " try! Are you a wizard?")    
+        print("You win! It only took you 1 try! Are you a wizard?")    
     else:
         print("You win! It only took you " + str(tries) + " tries!")
-
+    global loop
+    loop = False
 
 print(number)
-cows_bulls(get_input())
+
+while loop:
+    cows_bulls(get_input())

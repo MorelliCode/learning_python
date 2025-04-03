@@ -6,6 +6,10 @@ from bs4 import BeautifulSoup
 url = "http://www.nytimes.com"
 r = requests.get(url)
 r_html = r.text
-soup = BeautifulSoup(r_html)
+soup = BeautifulSoup(r_html, features="html.parser")
+wrapper_headline = soup.find_all(class_="story-wrapper")
 
-print(soup.findAll('p'))
+for section in wrapper_headline:
+    for p in section.find_all("p", class_="indicate-hover"):
+        print(p.get_text())
+

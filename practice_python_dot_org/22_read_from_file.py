@@ -21,4 +21,10 @@ with open("22_2.txt", "r") as open_file:
     line = open_file.readline()
     count = {}
     while line:
-        new_line = 
+        new_line = line.split("/")
+        if new_line[2] not in count:
+            count[new_line[2]] = 0
+        else:
+            count[new_line[2]] += 1
+        line = open_file.readline()
+    print(count)

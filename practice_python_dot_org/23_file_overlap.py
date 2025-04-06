@@ -7,7 +7,6 @@ with open("23_1.txt", "r") as file_prime, open("23_2.txt", "r") as file_happy:
     line_happy = file_happy.readline()
     list_prime = []
     list_happy = []
-    list_overlap = []
     while line_prime:
         new_line_prime = int(line_prime.rstrip("\n"))
         list_prime.append(new_line_prime)
@@ -16,8 +15,8 @@ with open("23_1.txt", "r") as file_prime, open("23_2.txt", "r") as file_happy:
         new_line_happy = int(line_happy.rstrip("\n"))
         list_happy.append(new_line_happy)
         line_happy = file_happy.readline()
-    for item in list_prime:
-        if item in list_happy:
-            list_overlap.append(item)
+
+    list_overlap = [item for item in list_prime if item in list_happy]
+    
     print(list_overlap)
         

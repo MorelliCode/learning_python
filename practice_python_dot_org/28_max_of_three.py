@@ -18,3 +18,13 @@ if input_3 > highest:
 
 print("The highest number is " + str(highest) + ".")
 
+highest = 0
+list = [0, 0, 0]
+list[0] = input_1
+list[1] = input_2
+list[2] = input_3
+
+for item in list:
+    if item > highest:
+        highest = item
+print(highest)

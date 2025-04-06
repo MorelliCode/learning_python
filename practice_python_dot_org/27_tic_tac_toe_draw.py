@@ -52,8 +52,11 @@ def player_play(player_number):
         elif gameboard[player_input_row][player_input_column] > 0:
             print("That square is already taken. Try again.")
             continue
-        #sets correct square to player's number
-        gameboard[player_input_row][player_input_column] = player_number
+        #sets correct square to X or O depending on the player
+        if player_turn == 1:
+            gameboard[player_input_row][player_input_column] = "X"
+        else:
+            gameboard[player_input_row][player_input_column] = "O"
         #checks if there are available squares to play, if now end program in a draw
         if 0 not in gameboard[0] and 0 not in gameboard[1] and 0 not in gameboard[2]:
             finish_draw()

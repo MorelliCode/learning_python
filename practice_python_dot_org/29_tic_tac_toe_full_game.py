@@ -97,11 +97,15 @@ def show_winner(player_symbol):
     loop = False
 
 
-while loop:
-    draw_board(gameboard)
-    player_play(player_turn)
-    check_winner(gameboard)
+def pass_turn():
+    global player_turn
     if player_turn == 1:
         player_turn = 2
     else:
         player_turn = 1
+
+while loop:
+    draw_board(gameboard)
+    player_play(player_turn)
+    check_winner(gameboard)
+    pass_turn()

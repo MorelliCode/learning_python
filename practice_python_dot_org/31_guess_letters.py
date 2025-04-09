@@ -58,6 +58,8 @@ def check_guess(letter):
             to_guess_lines[0][i] = letter
     if letter not in to_guess_lines[1] and letter not in letters_guessed:
         letters_guessed.append(letter)
+        letters_guessed = sorted(letters_guessed)
+        print("Incorrect!")
 
 def check_winner(list_of_lists):
     global loop
@@ -68,7 +70,7 @@ def check_winner(list_of_lists):
 
     
     
-
+print("Welcome to hangman!")
 to_guess_lines = guess_lines(chosen_word)
 #print(to_guess_lines)
 

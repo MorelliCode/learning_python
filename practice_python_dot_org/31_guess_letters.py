@@ -17,9 +17,9 @@
 # And so on, until the player gets the word.
 
 chosen_word = "EVAPORATE"
-
 to_guess_lines = []
 letters_guessed = []
+loop = True
 
 def guess_lines(word):
     to_guess = [[],[]]
@@ -30,13 +30,49 @@ def guess_lines(word):
 
 def display_game(list_of_lists):
     print(" ".join(list_of_lists[0]))
-    print("You've already guessed: " + " ".join(letters_guessed)) 
+    if len(letters_guessed) > 0:
+        print("You've already guessed: " + " ".join(letters_guessed)) 
     
 def ask_for_guess():
+    lower_letters = [chr(x) for x in range(97, 123)]
+    upper_letters = [chr(x) for x in range(65, 91)]
+    while True:
+        letter_guess = input("Guess a letter: ")
+        letter_guess = letter_guess.upper()
+        if len(letter_guess) > 1:
+            print("I said, guess A (1) letter. Try again.")
+            continue
+        if letter_guess not in upper_letters and letter_guess not in lower_letters:
+            print("I said, guess a LETTER. Try again.")
+            continue
+        elif letter_guess in letters_guessed or letter_guess in to_guess_lines[0]:
+            print("You've already guessed that letter. Try again.")
+
+        return letter_guess
+
+def check_guess(letter):
+    global to_guess_lines
+    global letters_guessed
+    for i in range(len(to_guess_lines[1])):
+        if letter == to_guess_lines[1][i]:
+            to_guess_lines[0][i] = letter
+    if letter not in to_guess_lines[1] and letter not in letters_guessed:
+        letters_guessed.append(letter)
+
+def check_winner(list_of_lists):
+    global loop
+    if list_of_lists[0] == list_of_lists[1]:
+        print(" ".join(list_of_lists[0]))
+        print("Congratulations! You win!")
+        loop = False
+
     
     
 
 to_guess_lines = guess_lines(chosen_word)
-print(to_guess_lines)
-display_game(to_guess_lines)
-#
+#print(to_guess_lines)
+
+while loop:
+    display_game(to_guess_lines)
+    check_guess(ask_for_guess())
+    check_winner(to_guess_lines)

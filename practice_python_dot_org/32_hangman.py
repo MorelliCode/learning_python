@@ -131,6 +131,7 @@ def check_result(list_of_lists):
     elif len(letters_guessed) == number_of_tries:
         display_drawing(len(letters_guessed))
         print("You've exhausted your tries. You lose.")
+        print("The word was: " + "".join(to_guess_lines[1]))
         loop = False
         play_again()
     else:

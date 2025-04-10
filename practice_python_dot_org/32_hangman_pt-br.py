@@ -27,14 +27,14 @@ number_of_tries = 6
 loop = True
 
 def import_list(file):
-    #start by opening the file, reading each line while stripping it of newline and possible white spaces
+    #start by opening the file, reading each line while stripping it of newline and possible white spaces and makes it uppercase
     #Then return the list
-    with open(file, "r") as file_list:
-        line = file_list.readline().strip()
+    with open(file, "r", encoding='utf-8') as file_list:
+        line = file_list.readline().strip().upper()
         lines = []
         while line:
             lines.append(line)
-            line = file_list.readline().strip()
+            line = file_list.readline().strip().upper()
         return lines
 
 def pick_word(word_list):
@@ -118,7 +118,7 @@ def check_guess(letter):
     global letters_guessed
     for i in range(len(to_guess_lines[1])):
         if letter == to_guess_lines[1][i]:
-            to_guess_lines[0][i] = letter
+            to_guess_lines[0][i] = to_guess_lines[2][i]
     if letter not in to_guess_lines[1] and letter not in letters_guessed:
         letters_guessed.append(letter)
         letters_guessed = sorted(letters_guessed)
@@ -126,7 +126,7 @@ def check_guess(letter):
 
 def check_result(list_of_lists):
     global loop
-    if list_of_lists[0] == list_of_lists[1]:
+    if list_of_lists[0] == list_of_lists[2]:
         print(" ".join(list_of_lists[0]))
         print("Parabéns! Você venceu!")
         loop = False
@@ -160,7 +160,7 @@ while True:
     loop = True
     letters_guessed = []
     #uncomment the following line for debug purposes
-    #print(to_guess_lines)
+    print(to_guess_lines)
 
     while loop:
         display_drawing(len(letters_guessed))

@@ -50,6 +50,48 @@ def display_game(list_of_lists):
     print(" ".join(list_of_lists[0]))
     if len(letters_guessed) > 0:
         print("You've already guessed: " + " ".join(letters_guessed)) 
+
+def display_drawing(number_missed_guesses):
+    line_hor = "____"
+    line_vert = "|"
+    line_2 = "  O"
+    line_3_1 = "  |"
+    line_3_2 = " /|"
+    line_3_3 = " /|\\"
+    line_4_1 = " /"
+    line_4_2 = " / \\"
+    print(line_hor)
+    if number_missed_guesses == 0:
+        print(line_vert)
+        print(line_vert)
+        print(line_vert)
+    elif number_missed_guesses == 1:
+        print(line_vert + line_2)
+        print(line_vert)
+        print(line_vert)
+    elif number_missed_guesses == 2:
+        print(line_vert + line_2)
+        print(line_vert + line_3_1)
+        print(line_vert)
+    elif number_missed_guesses == 3:
+        print(line_vert + line_2)
+        print(line_vert + line_3_2)
+        print(line_vert)
+    elif number_missed_guesses == 4:
+        print(line_vert + line_2)
+        print(line_vert + line_3_3)
+        print(line_vert)
+    elif number_missed_guesses == 5:
+        print(line_vert + line_2)
+        print(line_vert + line_3_3)
+        print(line_vert + line_4_1)
+    elif number_missed_guesses == 6:
+        print(line_vert + line_2)
+        print(line_vert + line_3_3)
+        print(line_vert + line_4_2)
+    else:
+        print("ERROR")
+    print(line_vert)
     
 def ask_for_guess():
     lower_letters = [chr(x) for x in range(97, 123)]
@@ -87,6 +129,7 @@ def check_result(list_of_lists):
         loop = False
         play_again()
     elif len(letters_guessed) == number_of_tries:
+        display_drawing(len(letters_guessed))
         print("You've exhausted your tries. You lose.")
         loop = False
         play_again()
@@ -112,9 +155,11 @@ while True:
     to_guess_lines = guess_lines(chosen_word)
     loop = True
     letters_guessed = []
-    print(to_guess_lines)
+    #uncomment the following line for debug purposes
+    #print(to_guess_lines)
 
     while loop:
+        display_drawing(len(letters_guessed))
         display_game(to_guess_lines)
         check_guess(ask_for_guess())
         check_result(to_guess_lines)

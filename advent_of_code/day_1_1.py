@@ -27,15 +27,24 @@
 # Your actual left and right lists contain many location IDs. What is the total distance between your lists?
 
 complete_list = []
-lef_list = []
+left_list = []
 right_list = []
 total_sum = 0
 
 with open("day_1_1.txt", "r") as f:
-    line = f.readline().rstrip("")
+    line = f.readline().strip().split()
     while line:
-         lef_list.append(int(line[0]))
-         right_list.append(int(line[1]))
-         line = f.readline().rstrip("").split("   ")
+        left_list.append(int(line[0]))
+        right_list.append(int(line[1]))
+        line = f.readline().strip().split()
 
-print(lef_list)
+left_list.sort()
+right_list.sort()
+
+for i in range(len(left_list)):
+    if left_list[i] - right_list[i] > 0:
+        total_sum += left_list[i] - right_list[i]
+    else:
+        total_sum += right_list[i] - left_list[i]
+
+print(total_sum)

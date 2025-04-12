@@ -26,7 +26,6 @@
 
 # Your actual left and right lists contain many location IDs. What is the total distance between your lists?
 
-complete_list = []
 left_list = []
 right_list = []
 total_sum = 0

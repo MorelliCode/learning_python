@@ -1,3 +1,6 @@
+#Program created using the exchange-api.
+#more information at https://github.com/fawazahmed0/exchange-api?tab=readme-ov-file
+
 import requests
 
 def get_currency_to_brl(currency_code):
